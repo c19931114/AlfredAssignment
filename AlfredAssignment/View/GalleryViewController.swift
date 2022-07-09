@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  GalleryViewController.swift
 //  AlfredAssignment
 //
 //  Created by Crystal on 2022/7/10.
@@ -49,7 +49,7 @@ enum Layout {
     }
 }
 
-class RootViewController: BaseViewController {
+class GalleryViewController: BaseViewController {
     
     private let viewModel: RootViewModel
 
@@ -61,14 +61,14 @@ class RootViewController: BaseViewController {
         return button
     }()
     
-    private let cCellID = String(describing: PhotoCollectionViewCell.self)
+    private let cCellID = String(describing: GalleryCollectionViewCell.self)
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout) 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: cCellID)
+        collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: cCellID)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -95,6 +95,12 @@ class RootViewController: BaseViewController {
                 self?.collectionView.reloadData()
             }
         }
+        viewModel.galleries.bind { [weak self] _ in
+            print("viewModel.galleries.bind")
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
     }
     
     private func setupUI() {
@@ -117,22 +123,24 @@ class RootViewController: BaseViewController {
     }
 }
 
-extension RootViewController: UICollectionViewDataSource {
+extension GalleryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.galleries.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let reuseCell = collectionView.dequeueReusableCell(withReuseIdentifier: cCellID, for: indexPath)
-        guard let cell = reuseCell as? PhotoCollectionViewCell else { 
+        
+        guard let cell = reuseCell as? GalleryCollectionViewCell else { 
             return reuseCell 
         }
-        cell.configCell(layout: viewModel.layout.value ?? .list)
+        guard let galleries = viewModel.galleries.value else { return cell }
+        cell.setCellModel(galleries[indexPath.item])
         return cell
     }
 }
 
-extension RootViewController: UICollectionViewDelegateFlowLayout {
+extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return viewModel.layout.value?.itemSize ?? .zero
     }
