@@ -51,7 +51,7 @@ enum Layout {
 
 class GalleryViewController: BaseViewController {
     
-    private let viewModel: RootViewModel
+    private let viewModel: GalleryViewModel
 
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
@@ -73,7 +73,7 @@ class GalleryViewController: BaseViewController {
         return collectionView
     }()
     
-    init(viewModel: RootViewModel) {
+    init(viewModel: GalleryViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         bindViewModel()
@@ -124,6 +124,7 @@ class GalleryViewController: BaseViewController {
 }
 
 extension GalleryViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.galleries.value?.count ?? 0
     }
@@ -141,13 +142,24 @@ extension GalleryViewController: UICollectionViewDataSource {
 }
 
 extension GalleryViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return viewModel.layout.value?.itemSize ?? .zero
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return viewModel.layout.value?.horizontalPadding ?? .zero
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return viewModel.layout.value?.verticalPadding ?? .zero
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard scrollView.contentSize.height > self.collectionView.frame.height else { return }
+        if scrollView.contentSize.height - (scrollView.frame.size.height + scrollView.contentOffset.y) <= -10 {
+            guard let page = viewModel.page.value else { return }
+            viewModel.page.value = page + 1
+        }
     }
 }

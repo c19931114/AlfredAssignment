@@ -10,7 +10,7 @@
 		F11B0D782879F81900346224 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B0D772879F81900346224 /* BaseViewController.swift */; };
 		F11B0D7D2879F97000346224 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B0D7C2879F97000346224 /* Observable.swift */; };
 		F11B0D7F2879FA1600346224 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B0D7E2879FA1600346224 /* APIManager.swift */; };
-		F15050A32879FE7F0039A1B2 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15050A22879FE7F0039A1B2 /* RootViewModel.swift */; };
+		F15050A32879FE7F0039A1B2 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15050A22879FE7F0039A1B2 /* GalleryViewModel.swift */; };
 		F1612D962879F70400EB9CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1612D952879F70400EB9CEA /* AppDelegate.swift */; };
 		F1612D982879F70400EB9CEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1612D972879F70400EB9CEA /* SceneDelegate.swift */; };
 		F1612D9A2879F70400EB9CEA /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1612D992879F70400EB9CEA /* GalleryViewController.swift */; };
@@ -27,7 +27,7 @@
 		F11B0D772879F81900346224 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F11B0D7C2879F97000346224 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F11B0D7E2879FA1600346224 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		F15050A22879FE7F0039A1B2 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		F15050A22879FE7F0039A1B2 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		F1612D922879F70400EB9CEA /* AlfredAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlfredAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1612D952879F70400EB9CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1612D972879F70400EB9CEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		F11B0D7A2879F92400346224 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F15050A22879FE7F0039A1B2 /* RootViewModel.swift */,
+				F15050A22879FE7F0039A1B2 /* GalleryViewModel.swift */,
 				F19F94C8287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift */,
 			);
 			path = ViewModel;
@@ -201,7 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F15050A32879FE7F0039A1B2 /* RootViewModel.swift in Sources */,
+				F15050A32879FE7F0039A1B2 /* GalleryViewModel.swift in Sources */,
 				F1D811F62879FA9100734BE0 /* ImgurData.swift in Sources */,
 				F11B0D7F2879FA1600346224 /* APIManager.swift in Sources */,
 				F1612D9A2879F70400EB9CEA /* GalleryViewController.swift in Sources */,

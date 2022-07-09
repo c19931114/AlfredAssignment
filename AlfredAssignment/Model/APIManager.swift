@@ -17,8 +17,8 @@ class APIManager {
     typealias APICompletionHandler = (GallerySearchResult?, Error?) -> Void
     
     func searchGallery(page: Int = 0, 
-                      query: String,
-                      completion: @escaping APICompletionHandler) {
+                       query: String,
+                       completion: @escaping APICompletionHandler) {
         
         guard let request = buildSearchGalleryRequest(page: page, query: query) else {
             // TODO: error handle
