@@ -19,6 +19,10 @@
 		F19F94C9287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94C8287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift */; };
 		F19F94CC287A27E2001F3B29 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94CB287A27E2001F3B29 /* UIImageView+Extension.swift */; };
 		F19F94CF287A2849001F3B29 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94CE287A2849001F3B29 /* CacheManager.swift */; };
+		F19F94D1287A4A43001F3B29 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94D0287A4A43001F3B29 /* PhotosViewController.swift */; };
+		F19F94D3287A4C85001F3B29 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94D2287A4C85001F3B29 /* PhotosViewModel.swift */; };
+		F19F94D5287A503D001F3B29 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94D4287A503D001F3B29 /* PhotoCollectionViewCell.swift */; };
+		F19F94D7287A5064001F3B29 /* PhotoCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F94D6287A5064001F3B29 /* PhotoCollectionViewCellModel.swift */; };
 		F1D811F62879FA9100734BE0 /* ImgurData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D811F52879FA9100734BE0 /* ImgurData.swift */; };
 		F1D811F82879FBB000734BE0 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D811F72879FBB000734BE0 /* GalleryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +42,10 @@
 		F19F94C8287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		F19F94CB287A27E2001F3B29 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F19F94CE287A2849001F3B29 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		F19F94D0287A4A43001F3B29 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		F19F94D2287A4C85001F3B29 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		F19F94D4287A503D001F3B29 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		F19F94D6287A5064001F3B29 /* PhotoCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		F1D811F52879FA9100734BE0 /* ImgurData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurData.swift; sourceTree = "<group>"; };
 		F1D811F72879FBB000734BE0 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +67,8 @@
 				F11B0D772879F81900346224 /* BaseViewController.swift */,
 				F1612D992879F70400EB9CEA /* GalleryViewController.swift */,
 				F1D811F72879FBB000734BE0 /* GalleryCollectionViewCell.swift */,
+				F19F94D0287A4A43001F3B29 /* PhotosViewController.swift */,
+				F19F94D4287A503D001F3B29 /* PhotoCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -68,6 +78,8 @@
 			children = (
 				F15050A22879FE7F0039A1B2 /* GalleryViewModel.swift */,
 				F19F94C8287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift */,
+				F19F94D2287A4C85001F3B29 /* PhotosViewModel.swift */,
+				F19F94D6287A5064001F3B29 /* PhotoCollectionViewCellModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -208,11 +220,15 @@
 				F19F94CF287A2849001F3B29 /* CacheManager.swift in Sources */,
 				F11B0D782879F81900346224 /* BaseViewController.swift in Sources */,
 				F1D811F82879FBB000734BE0 /* GalleryCollectionViewCell.swift in Sources */,
+				F19F94D3287A4C85001F3B29 /* PhotosViewModel.swift in Sources */,
 				F1612D962879F70400EB9CEA /* AppDelegate.swift in Sources */,
 				F19F94CC287A27E2001F3B29 /* UIImageView+Extension.swift in Sources */,
 				F19F94C9287A17AB001F3B29 /* GalleryCollectionViewCellModel.swift in Sources */,
+				F19F94D7287A5064001F3B29 /* PhotoCollectionViewCellModel.swift in Sources */,
+				F19F94D5287A503D001F3B29 /* PhotoCollectionViewCell.swift in Sources */,
 				F1612D982879F70400EB9CEA /* SceneDelegate.swift in Sources */,
 				F11B0D7D2879F97000346224 /* Observable.swift in Sources */,
+				F19F94D1287A4A43001F3B29 /* PhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  GalleryCollectionViewCell.swift
+//  PhotoCollectionViewCell.swift
 //  AlfredAssignment
 //
 //  Created by Crystal on 2022/7/10.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GalleryCollectionViewCell: UICollectionViewCell {
+class PhotoCollectionViewCell: UICollectionViewCell {
     
-    private var cellModel: GalleryCollectionViewCellModel!
+    private var cellModel: PhotoCollectionViewCellModel!
     
     private lazy var photoView: UIImageView = {
         let imageView = UIImageView()
@@ -19,7 +19,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -28,10 +28,10 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func setCellModel(_ cellModel: GalleryCollectionViewCellModel) {
+    
+    func setCellModel(_ cellModel: PhotoCollectionViewCellModel) {
         self.cellModel = cellModel
-        guard let urlString = self.cellModel.gallery.getFirstImageLink() else { return }
+        let urlString = self.cellModel.photo.link
         photoView.load(urlString: urlString)
     }
     

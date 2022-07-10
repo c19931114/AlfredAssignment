@@ -41,8 +41,7 @@ struct Gallery {
     
     func getFirstImageLink() -> String? {
         guard isAlbum else {
-            return link
-//            return type == "image/jpeg" ? link : nil
+            return type == "image/jpeg" ? link : nil
         }
         
         return images?.first(where: { image in

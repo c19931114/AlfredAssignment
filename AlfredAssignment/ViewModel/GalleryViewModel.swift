@@ -10,8 +10,9 @@ import Foundation
 class GalleryViewModel {
     
     private let apiManager = APIManager()
-    var layout: Observable<Layout> = Observable(.list)
+    
     var page: Observable<Int> = Observable(0)
+    
     private(set) var galleries: Observable<[GalleryCollectionViewCellModel]> = Observable([])
     
     init() {

@@ -1,5 +1,5 @@
 //
-//  GalleryViewController.swift
+//  PhotosViewController.swift
 //  AlfredAssignment
 //
 //  Created by Crystal on 2022/7/10.
@@ -7,51 +7,9 @@
 
 import UIKit
 
-enum Layout {
-    case list
-    case grid
+class PhotosViewController: BaseViewController {
     
-    var column: Int {
-        switch self {
-        case .list: return 1
-        case .grid: return 3
-        }
-    }
-    
-    var horizontalPadding: CGFloat {
-        switch self {
-        case .list: return 40 * 2
-        case .grid: return 2
-        }
-    }
-    
-    var verticalPadding: CGFloat {
-        switch self {
-        case .list: return 16
-        case .grid: return 2
-        }
-    }
-    
-    var itemSize: CGSize {
-        let fullScreenSize = UIScreen.main.bounds.size
-        var width: CGFloat = 0
-        var height: CGFloat = 0
-        switch self {
-        case .list:
-            width = fullScreenSize.width - horizontalPadding
-            height = width
-        case .grid:
-            width = (fullScreenSize.width - 1 // 暫時處理進位問題
-                     - horizontalPadding * CGFloat(column-1)) / 3
-            height = width
-        }
-        return CGSize(width: width, height: height)
-    }
-}
-
-class GalleryViewController: BaseViewController {
-    
-    private let viewModel: GalleryViewModel
+    private let viewModel: PhotosViewModel
     private var layout: Observable<Layout> = Observable(.list)
 
     private lazy var button: UIButton = {
@@ -62,19 +20,19 @@ class GalleryViewController: BaseViewController {
         return button
     }()
     
-    private let cCellID = String(describing: GalleryCollectionViewCell.self)
+    private let cCellID = String(describing: PhotoCollectionViewCell.self)
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout) 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: cCellID)
+        collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: cCellID)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
-    init(viewModel: GalleryViewModel) {
+    init(viewModel: PhotosViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         bindViewModel()
@@ -86,12 +44,12 @@ class GalleryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Albums"
+        title = "Photos"
         setupUI()
     }
     
     private func bindViewModel() {
-        viewModel.galleries.bind { [weak self] _ in
+        viewModel.photos.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
@@ -121,37 +79,25 @@ class GalleryViewController: BaseViewController {
     }
 }
 
-extension GalleryViewController: UICollectionViewDataSource {
+extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.galleries.value?.count ?? 0
+        return viewModel.photos.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let reuseCell = collectionView.dequeueReusableCell(withReuseIdentifier: cCellID, for: indexPath)
         
-        guard let cell = reuseCell as? GalleryCollectionViewCell else { 
+        guard let cell = reuseCell as? PhotoCollectionViewCell else { 
             return reuseCell 
         }
-        
-        guard let galleries = viewModel.galleries.value else { return cell }
-        cell.setCellModel(galleries[indexPath.item])
+        guard let photos = viewModel.photos.value else { return cell }
+        cell.setCellModel(photos[indexPath.item])
         return cell
     }
 }
 
-extension GalleryViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let galleries = viewModel.galleries.value,
-              let images = galleries[indexPath.item].gallery.images else { return }
-        let vm = PhotosViewModel(photos: images)
-        let vc = PhotosViewController(viewModel: vm)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension GalleryViewController: UICollectionViewDelegateFlowLayout {
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return layout.value?.itemSize ?? .zero
@@ -163,16 +109,5 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return layout.value?.verticalPadding ?? .zero
-    }
-}
-
-extension GalleryViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard scrollView.contentSize.height > self.collectionView.frame.height else { return }
-        if scrollView.contentSize.height - (scrollView.frame.size.height + scrollView.contentOffset.y) <= -10 {
-            guard let page = viewModel.page.value else { return }
-            viewModel.page.value = page + 1
-        }
     }
 }
